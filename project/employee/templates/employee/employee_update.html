@@ -1,0 +1,128 @@
+{% extends 'employee/base.html' %}
+{% block content %}
+
+<form action="" method="POST">
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_last_name">姓：</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        {{ form.last_name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_first_name"> 名：</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        {{ form.first_name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_email">メールアドレス：</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        {{ form.email }}
+        {% if form.email.errors %}{{ form.email.errors }}{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_date_of_birth">生年月日：</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        <input id="id_date_of_birth" class="form-control" type="date" name="date_of_birth" value="{{employee.date_of_birth|date:"Y-m-d"}}" required>
+        {% if form.date_of_birth.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p{% if forloop.last %} class="mb-0"{% endif %}>{{ form.date_of_birth.errors }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_department">所属部署：</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        {{ form.department }}
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="training">トレーニング：</label>
+      </p>
+    </div>
+  <div class="col-4">
+    <div class="input-group mb-3">
+      {{ form.training }}
+    </div>
+  </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_skill">スキル：</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        {{ form.skill }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+    </div>
+    <div class="col-1">
+      <button type="submit" class="btn btn-primary">更新</button>
+    </div>
+  </div>    
+
+{% csrf_token %}
+</form>
+
+{% endblock %}

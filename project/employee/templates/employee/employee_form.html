@@ -1,0 +1,149 @@
+{% extends 'employee/base.html' %}
+{% block content %}
+<!--<form action="" method="POST">
+  {{ form.as_p }}
+  <p>{{ UserCreationForm }}</p>-->
+  <form action="" method="POST">
+
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+      <div class="col-3">
+        <div style="text-align: center">
+  <p>
+    <label for="id_last_name">姓:</label>
+  </p>
+        </div>
+      </div>
+
+    <div class="col-4">
+  <!-- <p> -->
+    <input id="id_last_name" type="text" name="last_name" style="width: 150px; height: 30px;" size="21" required>
+  <!-- </p> -->
+
+  
+    </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+      <div class="col-3">
+        <div style="text-align: center">
+  <p>
+    <label for="id_first_name">名:</label>
+  </p>
+        </div>
+      </div>
+
+     <div class="col-4">
+  <!-- <p> -->
+    <input id="id_first_name" type="text" name="first_name" style="width: 150px; height: 30px;" size="21"; required>
+  <!-- </p> -->
+    </div>
+    </div>
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+      <div class="col-3">
+        <div style="text-align: center">
+  <p>
+    <label for="id_email">メールアドレス:</label>
+  </p>
+        </div>
+      </div>
+     <div class="col-4">
+  <!-- <p> -->
+    <input id="id_email" type="email" name="email" style="width: 300px; height: 30px;" size="21" required>
+  <!-- </p> -->
+    </div>
+    </div>
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+      <div class="col-3">
+        <div style="text-align: center">
+  <p>
+    <label for="id_date_of_birth">生年月日:</label>
+  </p>
+        </div>
+      </div>
+
+     <div class="col-4">
+  <!-- <p> -->
+    <input id="id_date_of_birth" type="date" name="date_of_birth" required>
+  <!-- </p> -->
+    </div>
+    </div>
+    
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+      <div class="col-3">
+        <div style="text-align: center">
+  <p>
+    <label for="id_password1">パスワード:</label>
+  </p>
+        </div>
+      </div>
+
+     <div class="col-4">
+  <!-- <p> -->
+    <input id="id_password1" type="password" name="password1" style="width: 300px; height: 30px;" size="21" required>
+  <!-- </p> -->
+
+    </div>
+
+    </div>
+    
+
+
+    <div class="row">
+
+      <div class="col-2">
+      </div>
+      <div class="col-3">
+        <div style="text-align: center">
+  <p>
+    <label for="id_password2">確認用パスワード:</label>
+  </p>
+        </div>
+      </div>
+     <div class="col-4">
+  <!-- <p> -->
+    <input id="id_password2" type="password" name="password2" style="width: 300px; height: 30px;" size="21" required>
+  <!-- </p> -->
+    </div>
+    </div>
+
+   {% csrf_token %}
+   <div style="text-align: center;">
+  <button type="submit" class="btn btn-primary">登録</button>
+   </div>
+
+</form>
+<script>
+  var form = document.forms[0];
+  form.onsubmit = function() {
+    // エラーメッセージをクリアする
+    form.password1.setCustomValidity("");
+    // パスワードの一致確認
+    if (form.password1.value != form.password2.value) {
+      // 一致していなかったら、エラーメッセージを表示する
+      form.password1.setCustomValidity("パスワードと確認用パスワードが一致しません");
+    }
+  };
+  // 入力値チェックエラーが発生したときの処理
+  form.addEventListener("invalid", function() {
+    document.getElementById("errorMessage").innerHTML = "入力値にエラーがあります";
+  }, false);
+</script>
+{% endblock %}

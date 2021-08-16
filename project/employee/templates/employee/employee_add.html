@@ -1,0 +1,133 @@
+{% extends 'employee/base.html' %}
+{% block content %}
+
+  <form action="" method="POST">
+
+    <div class="row mb-3">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+        <p>
+          <label for="id_last_name">姓:</label>
+        </p>
+      </div>
+      <div class="col-4">
+        <input id="id_last_name" class="form-control" type="text" name="last_name" style="width: 150px; height: 30px;" size="21" required autofocus>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+        <p>
+          <label for="id_first_name">名:</label>
+        </p>
+      </div>
+      <div class="col-4">
+        <input id="id_first_name" class="form-control" type="text" name="first_name" style="width: 150px; height: 30px;" size="21"; required>
+      </div>
+    </div>
+  
+    <div class="row mb-2">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+        <p>
+          <label for="id_email">メールアドレス:</label>
+        </p>
+      </div>
+      <div class="col-4">
+        <input id="id_email" class="form-control mb-3" type="email" name="email" style="width: 300px; height: 30px;" size="21" required>
+        {% if form.email.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p{% if forloop.last %} class="mb-0"{% endif %}>{{ form.email.errors }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+        <p>
+          <label for="id_date_of_birth">生年月日:</label>
+        </p>
+      </div>
+    <div class="col-4">
+      <input id="id_date_of_birth" class="form-control" type="date" name="date_of_birth" style="width: 300px; height: 30px;" required>
+      {% if form.date_of_birth.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p{% if forloop.last %} class="mb-0"{% endif %}>{{ form.date_of_birth.errors }}</p>
+        </div>
+      {% endif %}
+    </div>
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+        <p>
+          <label for="id_password1">パスワード:</label>
+        </p>
+      </div>
+      <div class="col-4">
+        <input id="id_password1" class="form-control" type="password" name="password1" style="width: 300px; height: 30px;" size="21" required>   
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+      </div>
+      <div class="col-5">
+        {% if form.password1.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p{% if forloop.last %} class="mb-0"{% endif %}>{{ form.password1.errors }}</p>
+        </div>
+        {% endif %}      
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+        <p>
+          <label for="id_password2">確認用パスワード:</label>
+        </p>
+      </div>
+      <div class="col-4">
+        <input id="id_password2" class="form-control" type="password" name="password2" style="width: 300px; height: 30px;" size="21" required>   
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-2">
+      </div>
+      <div class="col-5">
+        {% if form.password2.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p{% if forloop.last %} class="mb-0"{% endif %}>{{ form.password2.errors }}</p>
+        </div>
+        {% endif %}      
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-5">
+      </div>
+      <div class="col-1">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">登録</button>
+      </div>
+    </div>    
+</form>
+
+
+
+{% endblock %}

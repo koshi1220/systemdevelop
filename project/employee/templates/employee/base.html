@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+     <title>社員管理システム</title>
+
+  <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{% static 'icon/favicon.ico' %}">
+  </head>
+  <body>
+    <main>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color:whitesmoke;" fixed-top>
+        <div class="logo-holder">
+          <a class="navbar-brand" href="{% url 'employee:index' %}">
+            <img src="https://ts.accenture.com/sites/BrandSpace/Pages/brand_assets_images/images/greater-than-symbol-dimensional.png" alt="Accenture" class="d-inline-block align-top" width="80" height="28">
+          社員管理システム
+          </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <div class="navbar-left">
+            <ul class="nav navbar-nav">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'employee:index' %}">一覧</span></a>
+              </li>
+              {% endif %}
+              {% if user.is_authenticated and user.is_admin %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">管理画面</span></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+            <!-- マイページのドロップダウンメニュー部-->
+            <ul class="nav navbar-nav ml-auto">
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="glyphicon glyphicon-user"></span>
+                  </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item nav-link" href="{% url 'employee:detail' user.pk %}">マイページ</a></li>
+                  <li><a class="dropdown-item nav-link" href="{% url 'employee:update' user.pk %}">登録情報変更</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item nav-link" href="{% url 'employee:logout' %}">ログアウト</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'employee:add' %}">登録</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'employee:login' %}">ログイン</a>
+              </li>
+              {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class='container'>
+      <script>
+
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();   
+        });
+      </script>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+<!-- Optional JavaScript; choose one of the two! -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+      </main>
+      <div id="footer">
+    <div class="container" style="text-align:right;">
+      <ul class="pagination justify-content-end">
+        <p class="muted credit"> ©accenture.com. <a href="http://accenture.com">Learn more?</a></p>
+      </ul>
+    </div>
+  </div>
+  </body>
+</html>

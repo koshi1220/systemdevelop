@@ -1,0 +1,27 @@
+
+  /*========= body背景色の変化CSS ===============*/
+
+  body{
+	animation: bgchange 20s ease infinite;/*変化の時間を変更したい場合は20sの部分を好きな時間に変更*/
+  font-family:"游ゴシック", "MS Pゴシック";
+  font-weight: bolder;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  color:#ffffff;
+}
+  main{
+    flex: 1;
+  }
+  @keyframes bgchange{
+        0%   {background:#b455aa;}/*変化させたい色*/
+        15%  {background:#b455aa;}/*変化させたい色*/
+        30%  {background:#be82ff;}/*変化させたい色*/
+        55%  {background:#dcafff;}/*変化させたい色*/
+        75%  {background:#e6dcff;}/*変化させたい色*/
+        100% {background:#ffffff;}/*変化させたい色*/
+   }
+
+   footer {
+    height: 40px;
+}

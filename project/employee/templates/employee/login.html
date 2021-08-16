@@ -1,0 +1,63 @@
+{% extends 'employee/base.html' %}
+{% block content %}
+
+<form action="" method="POST">
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_username">メールアドレス:</label>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="input-group mb-3">
+        <input id="id_username" class="form-control" type="email" name="username" style="width: 300px; height: 30px;" size="21" required autofocus>
+      </div>
+    </div>
+  </div>  
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-2">
+      <p>
+        <label for="id_password1">パスワード:</label>
+      </p>
+    </div>
+    <div class="col-2">
+      <p> 
+        <input id="id_password1" class="form-control", type="password" name="password" style="width: 300px; height: 30px;" size="21" required>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-9">
+      {% if form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+        {% for error in form.non_field_errors %}
+        <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+    </div>
+    <div class="col-1">   
+      <button type="submit" class="btn btn-primary">ログイン</button>
+    </div>
+  </div>
+
+{% csrf_token %}
+
+</form>
+
+{% endblock %}
+
